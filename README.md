@@ -47,9 +47,15 @@ npm test
 npm run check       # all of the above
 ```
 
+## Testing switch: `OPEN_ALL_DAYS`
+
+`src/config.ts` has one switch, `OPEN_ALL_DAYS`. **It is currently `true`**, so the site opens with all 31 days unlocked (the archive view), whatever the date. `?previewDate=` still overrides it, so the teaser and the day locks can be checked.
+
+**Before launch, set `OPEN_ALL_DAYS = false`** and push to `main`. The site then shows the teaser until 1 December and unlocks one day at a time, as described below.
+
 ## Testing December before December: `previewDate`
 
-Before 1 December 2026 the live site shows a teaser ("Stjörnurnar eru að stilla sig af…" / "Jólastjörnuspáin opnar 1. desember."). To test any day, add `previewDate`; it overrides the clock and nothing else changes:
+With `OPEN_ALL_DAYS = false`, before 1 December 2026 the live site shows a teaser ("Stjörnurnar eru að stilla sig af…" / "Jólastjörnuspáin opnar 1. desember."). To test any day, add `previewDate`; it overrides the clock and nothing else changes:
 
 ```
 ?previewDate=2026-12-01

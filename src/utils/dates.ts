@@ -1,3 +1,5 @@
+import { OPEN_ALL_DAYS } from '../config';
+
 /**
  * All date logic for the site. Everything is evaluated in Atlantic/Reykjavik, never in the
  * visitor's device timezone. Iceland is UTC+0 all year, but the zone is still named explicitly
@@ -62,9 +64,19 @@ export function readPreviewDate(search: string): string | null {
   return value && isValidISODate(value) ? value : null;
 }
 
-/** The effective "today" for the site: the preview date when present, otherwise the Reykjavik date. */
-export function resolveToday(search: string, now: Date = new Date()): string {
-  return readPreviewDate(search) ?? reykjavikDateISO(now);
+/** The first day after December: the site treats it as the archive, with every day open. */
+export const ARCHIVE_DAY = `${YEAR + 1}-01-01`;
+
+/**
+ * The effective "today" for the site: the preview date when present, otherwise the Reykjavik
+ * date. While `OPEN_ALL_DAYS` (src/config.ts) is on, the default is the archive so every day
+ * can be tested; `?previewDate=` still wins so the teaser and day locks can be checked.
+ */
+export function resolveToday(search: string, now: Date = new Date(), openAllDays = OPEN_ALL_DAYS): string {
+  const preview = readPreviewDate(search);
+  if (preview) return preview;
+  const today = reykjavikDateISO(now);
+  return openAllDays && today < ARCHIVE_DAY ? ARCHIVE_DAY : today;
 }
 
 export function sitePhase(today: string): SitePhase {
