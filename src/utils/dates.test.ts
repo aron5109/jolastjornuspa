@@ -31,7 +31,15 @@ describe('dates', () => {
     expect(readPreviewDate('?previewDate=2026-02-30')).toBeNull();
     expect(readPreviewDate('?previewDate=tomorrow')).toBeNull();
     expect(resolveToday('?previewDate=2026-12-31', new Date('2026-10-16T12:00:00Z'))).toBe('2026-12-31');
-    expect(resolveToday('', new Date('2026-10-16T12:00:00Z'))).toBe('2026-10-16');
+    expect(resolveToday('', new Date('2026-10-16T12:00:00Z'), false)).toBe('2026-10-16');
+  });
+
+  it('opens every day for testing while OPEN_ALL_DAYS is on, unless previewDate is given', () => {
+    const october = new Date('2026-10-16T12:00:00Z');
+    expect(sitePhase(resolveToday('', october, true))).toBe('after');
+    expect(sitePhase(resolveToday('', new Date('2026-12-05T12:00:00Z'), true))).toBe('after');
+    expect(resolveToday('?previewDate=2026-11-20', october, true)).toBe('2026-11-20');
+    expect(resolveToday('', new Date('2027-01-05T12:00:00Z'), true)).toBe('2027-01-05');
   });
 
   it('validates ISO dates', () => {
