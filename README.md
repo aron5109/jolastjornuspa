@@ -134,10 +134,12 @@ Data: https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005587/mooninfo_2026.json
 
 `scripts/fetch-moon-data.mjs` downloads the hourly NASA file, takes the 12:00 UTC record for each December date (12:00 in Reykjavik) and writes a compact file with the NASA illumination percentage, Moon age and Earth–Moon distance, plus source metadata. Whether the Moon is waxing comes from the neighbouring hourly NASA samples, and the Icelandic phase name from the illumination: below 3% Nýtt tungl, above 97% Fullt tungl, 45–55% Fyrsta / Síðasta kvartil, otherwise Vaxandi / Minnkandi sigð (below 45%) or Vaxandi / Minnkandi tungl. The site never fetches NASA at runtime and never estimates values.
 
-**Current status:** the build environment that created this repository could not reach `svs.gsfc.nasa.gov`, so the committed file is a `"status": "missing"` marker with no values, and the panel says the NASA data has not been fetched yet. To fill it in, either:
+**Current status:** the committed file holds the real NASA extract for all 31 dates (fetched by the workflow below on 16 October 2026). To refresh it, either:
 
-- run the **"Sækja tunglgögn frá NASA"** workflow from the Actions tab (it fetches, validates and commits the data to the branch it runs on; it also runs on a push that changes the ingestion script), or
+- run the **"Sækja tunglgögn frá NASA"** workflow from the Actions tab (it fetches, validates and commits the data to the branch it runs on; it also runs on a push that changes the ingestion script while the data is missing), or
 - run `npm run fetch:moon` locally with network access and commit `src/data/astronomy/december-2026.json`. A downloaded copy also works: `npm run fetch:moon -- path/to/mooninfo_2026.json`.
+
+If the file is ever reset to `"status": "missing"`, the panel says the NASA data has not been fetched and shows no numbers.
 
 ## Deployment (GitHub Pages)
 
