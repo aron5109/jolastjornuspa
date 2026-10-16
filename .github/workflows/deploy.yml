@@ -19,6 +19,10 @@ jobs:
   build:
     name: Prófa og byggja
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # actions/configure-pages reads the repository's Pages settings with this job's token.
+      pages: read
     steps:
       - uses: actions/checkout@v5
 
