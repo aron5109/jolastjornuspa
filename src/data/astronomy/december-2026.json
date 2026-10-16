@@ -1,0 +1,12 @@
+{
+  "status": "missing",
+  "source": {
+    "name": "NASA Scientific Visualization Studio — Moon Phase and Libration, 2026",
+    "landingPage": "https://svs.gsfc.nasa.gov/5587/",
+    "dataUrl": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005587/mooninfo_2026.json",
+    "sampleTimeUtc": "12:00",
+    "retrievedAt": null,
+    "note": "Not fetched yet: svs.gsfc.nasa.gov was unreachable from the build environment. Run `npm run fetch:moon` or the \"Sækja tunglgögn frá NASA\" workflow. No values are shown until the real NASA data is committed."
+  },
+  "days": []
+}
