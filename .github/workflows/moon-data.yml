@@ -1,0 +1,57 @@
+name: Sækja tunglgögn frá NASA
+
+# Downloads NASA SVS "Moon Phase and Libration, 2026", extracts one 12:00 UTC record per
+# December date and commits src/data/astronomy/december-2026.json to the branch it runs on.
+# Run it from the Actions tab ("Run workflow") on the branch that should receive the data.
+# It also runs once on a push that changes the ingestion script while the data is still missing.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/fetch-moon-data.mjs
+      - .github/workflows/moon-data.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: moon-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    name: Sækja og vista tunglgögn
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+
+      - name: Skip when real data is already committed (push runs only)
+        id: check
+        run: |
+          status=$(node -p "require('./src/data/astronomy/december-2026.json').status")
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch NASA data
+        if: github.event_name == 'workflow_dispatch' || steps.check.outputs.status != 'ok'
+        run: node scripts/fetch-moon-data.mjs
+
+      - name: Validate
+        if: github.event_name == 'workflow_dispatch' || steps.check.outputs.status != 'ok'
+        run: node scripts/validate-content.mjs
+
+      - name: Commit data
+        if: github.event_name == 'workflow_dispatch' || steps.check.outputs.status != 'ok'
+        run: |
+          if git diff --quiet -- src/data/astronomy/december-2026.json; then
+            echo "Moon data unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/astronomy/december-2026.json
+          git commit -m "Uppfæra tunglgögn frá NASA fyrir desember 2026"
+          git push

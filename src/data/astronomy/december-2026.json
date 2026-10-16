@@ -1,0 +1,292 @@
+{
+  "status": "ok",
+  "source": {
+    "name": "NASA Scientific Visualization Studio — Moon Phase and Libration, 2026",
+    "landingPage": "https://svs.gsfc.nasa.gov/5587/",
+    "dataUrl": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005587/mooninfo_2026.json",
+    "sampleTimeUtc": "12:00",
+    "retrievedAt": "2026-10-16T16:30:59.316Z",
+    "note": "One NASA hourly record per date at 12:00 UTC (= 12:00 in Atlantic/Reykjavik). illumination, ageDays and distanceKm are NASA values (rounded); waxing and phase are derived from them by scripts/fetch-moon-data.mjs."
+  },
+  "days": [
+    {
+      "date": "2026-12-01",
+      "sampleTime": "2026-12-01T12:00:00Z",
+      "illumination": 47.48,
+      "ageDays": 22.21,
+      "distanceKm": 378957,
+      "waxing": false,
+      "phase": "sidasta-kvartil"
+    },
+    {
+      "date": "2026-12-02",
+      "sampleTime": "2026-12-02T12:00:00Z",
+      "illumination": 36.94,
+      "ageDays": 23.21,
+      "distanceKm": 383865,
+      "waxing": false,
+      "phase": "minnkandi-sigd"
+    },
+    {
+      "date": "2026-12-03",
+      "sampleTime": "2026-12-03T12:00:00Z",
+      "illumination": 27.25,
+      "ageDays": 24.21,
+      "distanceKm": 388440,
+      "waxing": false,
+      "phase": "minnkandi-sigd"
+    },
+    {
+      "date": "2026-12-04",
+      "sampleTime": "2026-12-04T12:00:00Z",
+      "illumination": 18.71,
+      "ageDays": 25.21,
+      "distanceKm": 392555,
+      "waxing": false,
+      "phase": "minnkandi-sigd"
+    },
+    {
+      "date": "2026-12-05",
+      "sampleTime": "2026-12-05T12:00:00Z",
+      "illumination": 11.61,
+      "ageDays": 26.21,
+      "distanceKm": 396154,
+      "waxing": false,
+      "phase": "minnkandi-sigd"
+    },
+    {
+      "date": "2026-12-06",
+      "sampleTime": "2026-12-06T12:00:00Z",
+      "illumination": 6.12,
+      "ageDays": 27.21,
+      "distanceKm": 399228,
+      "waxing": false,
+      "phase": "minnkandi-sigd"
+    },
+    {
+      "date": "2026-12-07",
+      "sampleTime": "2026-12-07T12:00:00Z",
+      "illumination": 2.37,
+      "ageDays": 28.21,
+      "distanceKm": 401782,
+      "waxing": false,
+      "phase": "nytt-tungl"
+    },
+    {
+      "date": "2026-12-08",
+      "sampleTime": "2026-12-08T12:00:00Z",
+      "illumination": 0.44,
+      "ageDays": 29.21,
+      "distanceKm": 403817,
+      "waxing": false,
+      "phase": "nytt-tungl"
+    },
+    {
+      "date": "2026-12-09",
+      "sampleTime": "2026-12-09T12:00:00Z",
+      "illumination": 0.34,
+      "ageDays": 0.46,
+      "distanceKm": 405310,
+      "waxing": true,
+      "phase": "nytt-tungl"
+    },
+    {
+      "date": "2026-12-10",
+      "sampleTime": "2026-12-10T12:00:00Z",
+      "illumination": 2.04,
+      "ageDays": 1.46,
+      "distanceKm": 406206,
+      "waxing": true,
+      "phase": "nytt-tungl"
+    },
+    {
+      "date": "2026-12-11",
+      "sampleTime": "2026-12-11T12:00:00Z",
+      "illumination": 5.44,
+      "ageDays": 2.46,
+      "distanceKm": 406419,
+      "waxing": true,
+      "phase": "vaxandi-sigd"
+    },
+    {
+      "date": "2026-12-12",
+      "sampleTime": "2026-12-12T12:00:00Z",
+      "illumination": 10.42,
+      "ageDays": 3.46,
+      "distanceKm": 405844,
+      "waxing": true,
+      "phase": "vaxandi-sigd"
+    },
+    {
+      "date": "2026-12-13",
+      "sampleTime": "2026-12-13T12:00:00Z",
+      "illumination": 16.83,
+      "ageDays": 4.46,
+      "distanceKm": 404370,
+      "waxing": true,
+      "phase": "vaxandi-sigd"
+    },
+    {
+      "date": "2026-12-14",
+      "sampleTime": "2026-12-14T12:00:00Z",
+      "illumination": 24.49,
+      "ageDays": 5.46,
+      "distanceKm": 401908,
+      "waxing": true,
+      "phase": "vaxandi-sigd"
+    },
+    {
+      "date": "2026-12-15",
+      "sampleTime": "2026-12-15T12:00:00Z",
+      "illumination": 33.2,
+      "ageDays": 6.46,
+      "distanceKm": 398413,
+      "waxing": true,
+      "phase": "vaxandi-sigd"
+    },
+    {
+      "date": "2026-12-16",
+      "sampleTime": "2026-12-16T12:00:00Z",
+      "illumination": 42.73,
+      "ageDays": 7.46,
+      "distanceKm": 393911,
+      "waxing": true,
+      "phase": "vaxandi-sigd"
+    },
+    {
+      "date": "2026-12-17",
+      "sampleTime": "2026-12-17T12:00:00Z",
+      "illumination": 52.81,
+      "ageDays": 8.46,
+      "distanceKm": 388523,
+      "waxing": true,
+      "phase": "fyrsta-kvartil"
+    },
+    {
+      "date": "2026-12-18",
+      "sampleTime": "2026-12-18T12:00:00Z",
+      "illumination": 63.08,
+      "ageDays": 9.46,
+      "distanceKm": 382479,
+      "waxing": true,
+      "phase": "vaxandi-tungl"
+    },
+    {
+      "date": "2026-12-19",
+      "sampleTime": "2026-12-19T12:00:00Z",
+      "illumination": 73.13,
+      "ageDays": 10.46,
+      "distanceKm": 376128,
+      "waxing": true,
+      "phase": "vaxandi-tungl"
+    },
+    {
+      "date": "2026-12-20",
+      "sampleTime": "2026-12-20T12:00:00Z",
+      "illumination": 82.41,
+      "ageDays": 11.46,
+      "distanceKm": 369926,
+      "waxing": true,
+      "phase": "vaxandi-tungl"
+    },
+    {
+      "date": "2026-12-21",
+      "sampleTime": "2026-12-21T12:00:00Z",
+      "illumination": 90.3,
+      "ageDays": 12.46,
+      "distanceKm": 364396,
+      "waxing": true,
+      "phase": "vaxandi-tungl"
+    },
+    {
+      "date": "2026-12-22",
+      "sampleTime": "2026-12-22T12:00:00Z",
+      "illumination": 96.15,
+      "ageDays": 13.46,
+      "distanceKm": 360069,
+      "waxing": true,
+      "phase": "vaxandi-tungl"
+    },
+    {
+      "date": "2026-12-23",
+      "sampleTime": "2026-12-23T12:00:00Z",
+      "illumination": 99.37,
+      "ageDays": 14.46,
+      "distanceKm": 357396,
+      "waxing": true,
+      "phase": "fullt-tungl"
+    },
+    {
+      "date": "2026-12-24",
+      "sampleTime": "2026-12-24T12:00:00Z",
+      "illumination": 99.61,
+      "ageDays": 15.46,
+      "distanceKm": 356668,
+      "waxing": false,
+      "phase": "fullt-tungl"
+    },
+    {
+      "date": "2026-12-25",
+      "sampleTime": "2026-12-25T12:00:00Z",
+      "illumination": 96.81,
+      "ageDays": 16.46,
+      "distanceKm": 357948,
+      "waxing": false,
+      "phase": "minnkandi-tungl"
+    },
+    {
+      "date": "2026-12-26",
+      "sampleTime": "2026-12-26T12:00:00Z",
+      "illumination": 91.23,
+      "ageDays": 17.46,
+      "distanceKm": 361062,
+      "waxing": false,
+      "phase": "minnkandi-tungl"
+    },
+    {
+      "date": "2026-12-27",
+      "sampleTime": "2026-12-27T12:00:00Z",
+      "illumination": 83.43,
+      "ageDays": 18.46,
+      "distanceKm": 365641,
+      "waxing": false,
+      "phase": "minnkandi-tungl"
+    },
+    {
+      "date": "2026-12-28",
+      "sampleTime": "2026-12-28T12:00:00Z",
+      "illumination": 74.05,
+      "ageDays": 19.46,
+      "distanceKm": 371200,
+      "waxing": false,
+      "phase": "minnkandi-tungl"
+    },
+    {
+      "date": "2026-12-29",
+      "sampleTime": "2026-12-29T12:00:00Z",
+      "illumination": 63.77,
+      "ageDays": 20.46,
+      "distanceKm": 377223,
+      "waxing": false,
+      "phase": "minnkandi-tungl"
+    },
+    {
+      "date": "2026-12-30",
+      "sampleTime": "2026-12-30T12:00:00Z",
+      "illumination": 53.19,
+      "ageDays": 21.46,
+      "distanceKm": 383240,
+      "waxing": false,
+      "phase": "sidasta-kvartil"
+    },
+    {
+      "date": "2026-12-31",
+      "sampleTime": "2026-12-31T12:00:00Z",
+      "illumination": 42.81,
+      "ageDays": 22.46,
+      "distanceKm": 388875,
+      "waxing": false,
+      "phase": "minnkandi-sigd"
+    }
+  ]
+}
