@@ -5,7 +5,7 @@ import { downloadBlob, renderForecastCard } from '../utils/forecastCard';
 import { formatForecastForCopy } from '../utils/horoscope';
 import { CopyForecastButton } from './CopyForecastButton';
 import { HoroscopeSection } from './HoroscopeSection';
-import { BackIcon, ChristmasIcon, ImageIcon, LuckIcon, StarMark, WorkIcon } from './icons';
+import { BackIcon, ImageIcon } from './icons';
 import { ZodiacGlyph } from './ZodiacGlyph';
 
 type Props = {
@@ -36,11 +36,7 @@ export function HoroscopeView({ sign, horoscope, reducedMotion, onChooseAnother 
       aria-labelledby="forecast-title"
     >
       <header className="forecast-header">
-        <p className="eyebrow">
-          <span>Jólastjörnuspá</span>
-          <span aria-hidden="true"> · </span>
-          <span>{formatDateIs(horoscope.date)}</span>
-        </p>
+        <p className="eyebrow">{formatDateIs(horoscope.date)}</p>
         <div className="forecast-title-row">
           <ZodiacGlyph sign={sign.id} className="forecast-glyph" />
           <div>
@@ -54,19 +50,18 @@ export function HoroscopeView({ sign, horoscope, reducedMotion, onChooseAnother 
       </header>
 
       <div className="forecast-sections">
-        <HoroscopeSection title="Vinnan" tone="work" icon={<WorkIcon />}>
+        <HoroscopeSection title="Vinnan" tone="work">
           {horoscope.work}
         </HoroscopeSection>
-        <HoroscopeSection title="Jólin" tone="christmas" icon={<ChristmasIcon />}>
+        <HoroscopeSection title="Jólin" tone="christmas">
           {horoscope.christmas}
         </HoroscopeSection>
-        <HoroscopeSection title="Heppnin" tone="luck" icon={<LuckIcon />}>
+        <HoroscopeSection title="Heppnin" tone="luck">
           {horoscope.luck}
         </HoroscopeSection>
       </div>
 
       <aside className="star-message" aria-labelledby="star-message-title">
-        <StarMark className="star-message-icon" />
         <div>
           <h3 id="star-message-title" className="star-message-title">
             Stjörnuboð dagsins

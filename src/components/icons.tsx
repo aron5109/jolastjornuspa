@@ -12,42 +12,11 @@ const base = {
   focusable: false,
 };
 
-/** Four-point star with a small sparkle, the site's mark. */
+/** Eight-point Christmas star, the site's mark. Solid, no sparkle. */
 export function StarMark({ className }: IconProps) {
   return (
-    <svg {...base} className={className}>
-      <path d="M12 2.5C12.6 8 14 9.6 19.5 10.2 14 10.8 12.6 12.4 12 18 11.4 12.4 10 10.8 4.5 10.2 10 9.6 11.4 8 12 2.5Z" />
-      <path d="M18.5 16.5V21 M16.3 18.8H20.8" />
-    </svg>
-  );
-}
-
-/** Vinnan: a compass-like orbit. */
-export function WorkIcon({ className }: IconProps) {
-  return (
-    <svg {...base} className={className}>
-      <rect x="3.5" y="7" width="17" height="12.5" rx="2" />
-      <path d="M9 7V5.5C9 4.7 9.7 4 10.5 4H13.5C14.3 4 15 4.7 15 5.5V7 M3.5 12.5H20.5 M12 11.5V13.5" />
-    </svg>
-  );
-}
-
-/** Jólin: a tree-topper star above a soft light. */
-export function ChristmasIcon({ className }: IconProps) {
-  return (
-    <svg {...base} className={className}>
-      <path d="M12 3L13.4 6.2 16.8 6.5 14.2 8.7 15 12 12 10.2 9 12 9.8 8.7 7.2 6.5 10.6 6.2Z" />
-      <path d="M12 13.5L6 21H18Z" />
-    </svg>
-  );
-}
-
-/** Heppnin: a shooting star. */
-export function LuckIcon({ className }: IconProps) {
-  return (
-    <svg {...base} className={className}>
-      <path d="M15.5 4L16.6 6.9 19.5 8 16.6 9.1 15.5 12 14.4 9.1 11.5 8 14.4 6.9Z" />
-      <path d="M11 13L4 20 M13 16L8.5 20.5 M8 11L3.5 15.5" />
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" className={className}>
+      <path d="M12.00 2.00 L12.88 9.88 L16.24 7.76 L14.12 11.12 L22.00 12.00 L14.12 12.88 L16.24 16.24 L12.88 14.12 L12.00 22.00 L11.12 14.12 L7.76 16.24 L9.88 12.88 L2.00 12.00 L9.88 11.12 L7.76 7.76 L11.12 9.88Z" />
     </svg>
   );
 }

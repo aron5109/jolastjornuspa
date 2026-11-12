@@ -5,8 +5,8 @@ const WIDTH = 1080;
 const HEIGHT = 1350;
 const PADDING = 96;
 
-const DISPLAY_FONT = '"Cormorant Garamond", Georgia, serif';
-const BODY_FONT = '"Inter Variable", "Inter", system-ui, sans-serif';
+const DISPLAY_FONT = '"EB Garamond", Georgia, serif';
+const BODY_FONT = '"IBM Plex Sans", system-ui, sans-serif';
 
 function wrap(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
   const words = text.split(/\s+/);
@@ -42,22 +42,22 @@ export async function renderForecastCard(sign: ZodiacSign, horoscope: DailyHoros
   if (!ctx) return null;
 
   const background = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
-  background.addColorStop(0, '#0b1030');
-  background.addColorStop(0.55, '#140f3a');
-  background.addColorStop(1, '#070918');
+  background.addColorStop(0, '#4a0d13');
+  background.addColorStop(0.55, '#3a080d');
+  background.addColorStop(1, '#24050a');
   ctx.fillStyle = background;
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
   const glow = ctx.createRadialGradient(WIDTH * 0.8, HEIGHT * 0.12, 0, WIDTH * 0.8, HEIGHT * 0.12, 620);
-  glow.addColorStop(0, 'rgba(128, 103, 255, 0.35)');
-  glow.addColorStop(1, 'rgba(128, 103, 255, 0)');
+  glow.addColorStop(0, 'rgba(222, 180, 98, 0.12)');
+  glow.addColorStop(1, 'rgba(222, 180, 98, 0)');
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
   const random = seeded(horoscope.date.length * 97 + sign.id.length * 13 + Number(horoscope.date.slice(8)));
   for (let i = 0; i < 160; i += 1) {
     ctx.globalAlpha = 0.2 + random() * 0.6;
-    ctx.fillStyle = random() < 0.12 ? '#f4d58b' : '#e6e9ff';
+    ctx.fillStyle = random() < 0.12 ? '#deb462' : '#f6ecd9';
     ctx.beginPath();
     ctx.arc(random() * WIDTH, random() * HEIGHT, 0.6 + random() * 1.6, 0, Math.PI * 2);
     ctx.fill();
@@ -66,7 +66,7 @@ export async function renderForecastCard(sign: ZodiacSign, horoscope: DailyHoros
 
   // Constellation in the top-right corner.
   const art = { x: WIDTH - PADDING - 260, y: PADDING - 10, size: 260 };
-  ctx.strokeStyle = 'rgba(244, 213, 139, 0.55)';
+  ctx.strokeStyle = 'rgba(222, 180, 98, 0.6)';
   ctx.lineWidth = 2;
   for (const [from, to] of sign.constellation.lines) {
     const a = sign.constellation.stars[from];
@@ -90,19 +90,19 @@ export async function renderForecastCard(sign: ZodiacSign, horoscope: DailyHoros
   }
 
   let y = PADDING + 30;
-  ctx.fillStyle = '#f4d58b';
+  ctx.fillStyle = '#deb462';
   ctx.font = `600 26px ${BODY_FONT}`;
-  ctx.fillText(`JÓLASTJÖRNUSPÁ · ${formatDateIs(horoscope.date).toUpperCase()}`, PADDING, y);
+  ctx.fillText(`Jólastjörnuspá · ${formatDateIs(horoscope.date)}`, PADDING, y);
   y += 110;
-  ctx.fillStyle = '#f7f3ea';
+  ctx.fillStyle = '#f6ecd9';
   ctx.font = `600 104px ${DISPLAY_FONT}`;
   ctx.fillText(sign.name, PADDING, y);
   y += 56;
-  ctx.fillStyle = 'rgba(247, 243, 234, 0.72)';
+  ctx.fillStyle = 'rgba(246, 236, 217, 0.72)';
   ctx.font = `400 30px ${BODY_FONT}`;
   ctx.fillText(sign.dateRange, PADDING, y);
   y += 70;
-  ctx.fillStyle = '#9fe8ff';
+  ctx.fillStyle = '#deb462';
   ctx.font = `italic 500 44px ${DISPLAY_FONT}`;
   ctx.fillText(`„${horoscope.headline}“`, PADDING, y);
   y += 40;
@@ -114,11 +114,11 @@ export async function renderForecastCard(sign: ZodiacSign, horoscope: DailyHoros
   ];
   for (const [title, text] of sections) {
     y += 54;
-    ctx.fillStyle = '#f4d58b';
+    ctx.fillStyle = '#deb462';
     ctx.font = `600 40px ${DISPLAY_FONT}`;
     ctx.fillText(title, PADDING, y);
-    ctx.fillStyle = '#f7f3ea';
-    ctx.font = `400 31px ${BODY_FONT}`;
+    ctx.fillStyle = '#f6ecd9';
+    ctx.font = `400 35px ${DISPLAY_FONT}`;
     for (const line of wrap(ctx, text, WIDTH - PADDING * 2)) {
       y += 44;
       ctx.fillText(line, PADDING, y);
@@ -126,7 +126,7 @@ export async function renderForecastCard(sign: ZodiacSign, horoscope: DailyHoros
     y += 12;
   }
 
-  ctx.fillStyle = 'rgba(247, 243, 234, 0.6)';
+  ctx.fillStyle = 'rgba(246, 236, 217, 0.6)';
   ctx.font = `400 24px ${BODY_FONT}`;
   ctx.fillText('Til gamans gert · aron5109.github.io/jolastjornuspa', PADDING, HEIGHT - PADDING + 20);
 

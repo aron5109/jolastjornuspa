@@ -19,12 +19,14 @@ No backend, no database, no accounts, no analytics, no cookies, no tracking and 
 | Framework | React 19 + TypeScript |
 | Build | Vite (`base: '/jolastjornuspa/'`) |
 | Styling | Plain CSS with custom properties (`src/styles/global.css`), SVG, two Canvas layers |
-| Fonts | Cormorant Garamond (display) and Inter (body), bundled from `@fontsource` packages, no font CDN |
+| Fonts | EB Garamond (display and forecast text) and IBM Plex Sans (interface), bundled from `@fontsource` packages, no font CDN |
 | Tests | Vitest + Testing Library (jsdom) |
 | Quality | ESLint (typescript-eslint, react-hooks), `tsc`, content validation script |
 | Hosting | GitHub Pages via GitHub Actions |
 
 Runtime dependencies are only `react`, `react-dom` and the two font packages.
+
+Visual theme: **Rauð jól**. Oxblood background, warm cream text and one brass accent, flat surfaces, hairline rules and small caps for labels. No glassmorphism, glows or gradient blobs.
 
 ## Local setup
 

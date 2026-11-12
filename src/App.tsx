@@ -119,7 +119,7 @@ export default function App() {
 
   const subtitle = useMemo(() => {
     if (phase === 'before') return 'Hvað segja stjörnurnar um desember hjá þér?';
-    if (phase === 'after') return 'Jólastjörnuspá 2026. Allir dagar desember eru opnir til að fletta.';
+    if (phase === 'after') return 'Allir dagar desember eru opnir til að fletta.';
     return `Í dag er ${formatDateIs(today)}.`;
   }, [phase, today]);
 
@@ -174,11 +174,7 @@ export default function App() {
             </div>
           ) : (
             <section className="choose" aria-labelledby="choose-title">
-              <p className="eyebrow">
-                <span>Jólastjörnuspá</span>
-                <span aria-hidden="true"> · </span>
-                <span>{selectedDate ? formatDateIs(selectedDate) : ''}</span>
-              </p>
+              <p className="eyebrow">{selectedDate ? formatDateIs(selectedDate) : ''}</p>
               <h2 id="choose-title" className="choose-title">
                 Veldu stjörnumerkið þitt
               </h2>
