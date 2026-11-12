@@ -39,18 +39,18 @@ export function ZodiacSelector({ orbital, pendingSign, onSelect }: Props) {
         <div className="orbit-centre" aria-hidden="true">
           <svg className="orbit-rings" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="98" />
-            <circle cx="100" cy="100" r="56" />
-            <circle cx="100" cy="100" r="44" className="orbit-ring-faint" />
+            <circle cx="100" cy="100" r="44" />
+            <circle cx="100" cy="100" r="37" className="orbit-ring-faint" />
             {Array.from({ length: 12 }, (_, i) => {
               // Ticks sit between the signs so they never cross a constellation.
               const angle = (i * 30 - 75) * (Math.PI / 180);
               return (
                 <line
                   key={i}
-                  x1={100 + Math.cos(angle) * 56}
-                  y1={100 + Math.sin(angle) * 56}
-                  x2={100 + Math.cos(angle) * 62}
-                  y2={100 + Math.sin(angle) * 62}
+                  x1={100 + Math.cos(angle) * 44}
+                  y1={100 + Math.sin(angle) * 44}
+                  x2={100 + Math.cos(angle) * 50}
+                  y2={100 + Math.sin(angle) * 50}
                 />
               );
             })}
@@ -96,7 +96,10 @@ export function ZodiacSelector({ orbital, pendingSign, onSelect }: Props) {
                 <span className="zodiac-button-text">
                   <ZodiacGlyph sign={sign.id} className="zodiac-button-glyph" />
                   <span className="zodiac-button-name">{sign.name}</span>
-                  <span className="zodiac-button-range">{sign.dateRange}</span>
+                  <span className="zodiac-button-range">
+                    {/* Keep the dash with the first date so a wrapped range never starts with it. */}
+                    {sign.dateRange.replace(' – ', '\u00a0– ')}
+                  </span>
                 </span>
               </button>
             </li>
