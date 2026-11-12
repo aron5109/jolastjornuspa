@@ -595,7 +595,7 @@ a:hover {
 
 /* Orbital arrangement (desktop). */
 .zodiac-selector.is-orbital {
-  --orbit-size: clamp(580px, calc(100vh - 230px), 760px);
+  --orbit-size: clamp(680px, calc(100vh - 220px), 780px);
   position: relative;
   width: var(--orbit-size);
   height: var(--orbit-size);
@@ -613,8 +613,8 @@ a:hover {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 164px;
-  transform: translate(-50%, -50%) rotate(var(--angle)) translate(calc(var(--orbit-size) * 0.4))
+  width: 124px;
+  transform: translate(-50%, -50%) rotate(var(--angle)) translate(calc(var(--orbit-size) * 0.365))
     rotate(calc(var(--angle) * -1));
 }
 
@@ -634,13 +634,22 @@ a:hover {
   background: rgba(38, 6, 10, 0.75);
 }
 
+.is-orbital .zodiac-button {
+  gap: 2px;
+}
+
+.is-orbital .zodiac-button-name {
+  font-size: 1.2rem;
+}
+
 .is-orbital .zodiac-button-range {
+  font-size: 0.8rem;
   white-space: nowrap;
 }
 
 .is-orbital .zodiac-button-art {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .orbit-centre {
@@ -675,7 +684,7 @@ a:hover {
   display: grid;
   justify-items: center;
   align-content: center;
-  width: calc(var(--orbit-size) * 0.4);
+  width: calc(var(--orbit-size) * 0.36);
   aspect-ratio: 1;
   text-align: center;
 }
@@ -690,15 +699,15 @@ a:hover {
 }
 
 .orbit-preview-art {
-  width: calc(var(--orbit-size) * 0.26);
-  height: calc(var(--orbit-size) * 0.26);
+  width: calc(var(--orbit-size) * 0.17);
+  height: calc(var(--orbit-size) * 0.17);
 }
 
 .orbit-preview-name {
-  margin-top: 10px;
+  margin-top: 8px;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 1.1;
 }
 
@@ -769,12 +778,13 @@ a:hover {
       'nav nav'
       'main side'
       'sky sky';
-    align-items: start;
+    align-items: stretch;
   }
 
-  .reading-side {
-    position: sticky;
-    top: 24px;
+  /* Forecast and sign info share one row height, and neither panel floats over the sky below. */
+  .reading-main > .forecast,
+  .reading-side > .zodiac-info {
+    height: 100%;
   }
 }
 
@@ -1019,15 +1029,6 @@ a:hover {
   min-height: 0;
 }
 
-.forecast-disclaimer {
-  margin-top: 16px;
-  color: var(--faint);
-  font-size: 0.85rem;
-}
-
-.forecast-disclaimer strong {
-  color: var(--muted);
-}
 
 @media (min-width: 600px) {
   .forecast {

@@ -83,10 +83,6 @@ export function HoroscopeView({ sign, horoscope, reducedMotion, onChooseAnother 
           Velja annað merki
         </button>
       </div>
-
-      <p className="forecast-disclaimer">
-        <strong>Til gamans gert.</strong> Jólastjörnuspáin er skáldskapur og afþreying, ekki ráðgjöf.
-      </p>
     </article>
   );
 }

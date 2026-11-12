@@ -444,3 +444,23 @@ export function getSign(id: ZodiacId): ZodiacSign {
 export function isZodiacId(value: string | null | undefined): value is ZodiacId {
   return !!value && SIGNS_BY_ID.has(value as ZodiacId);
 }
+
+const SHORT_MONTHS: Record<string, string> = {
+  janúar: 'jan',
+  febrúar: 'feb',
+  mars: 'mar',
+  apríl: 'apr',
+  maí: 'maí',
+  júní: 'jún',
+  júlí: 'júl',
+  ágúst: 'ágú',
+  september: 'sep',
+  október: 'okt',
+  nóvember: 'nóv',
+  desember: 'des',
+};
+
+/** "22. desember – 19. janúar" → "22. des – 19. jan", for the compact sign selector. */
+export function shortDateRange(range: string): string {
+  return range.replace(/[a-záéíóúýþæðö]+/g, (month) => SHORT_MONTHS[month] ?? month);
+}

@@ -186,7 +186,7 @@ export default function App() {
 
         <footer className="site-footer">
           <p>
-            <strong>Til gamans gert.</strong> Jólastjörnuspáin er skáldskapur fyrir starfsfólk í desember.
+            <strong>Til gamans gert.</strong> Jólastjörnuspáin er skáldskapur og afþreying, ekki ráðgjöf.
           </p>
           <p>
             Himininn í dag byggir á stjörnufræðilegum gögnum frá NASA og tengist spánni ekki. Engar vafrakökur, engin
