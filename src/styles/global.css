@@ -779,12 +779,13 @@ a:hover {
       'nav nav'
       'main side'
       'sky sky';
-    align-items: start;
+    align-items: stretch;
   }
 
-  .reading-side {
-    position: sticky;
-    top: 24px;
+  /* Forecast and sign info share one row height, and neither panel floats over the sky below. */
+  .reading-main > .forecast,
+  .reading-side > .zodiac-info {
+    height: 100%;
   }
 }
 
