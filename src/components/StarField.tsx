@@ -51,7 +51,7 @@ export function StarField({ reducedMotion, variant, paused = false }: Props) {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.round(Math.min(variant === 'nye' ? 300 : 240, Math.max(70, (width * height) / 7000)));
+      const count = Math.round(Math.min(variant === 'nye' ? 220 : 160, Math.max(50, (width * height) / 10000)));
       stars = Array.from({ length: count }, () => {
         const near = Math.random();
         const warm = Math.random() < warmShare;
@@ -59,11 +59,11 @@ export function StarField({ reducedMotion, variant, paused = false }: Props) {
           x: Math.random() * width,
           y: Math.random() * height,
           r: 0.35 + near * near * 1.25,
-          alpha: 0.25 + Math.random() * 0.6,
+          alpha: 0.15 + Math.random() * 0.45,
           speed: 0.4 + Math.random() * 1.4,
           phase: Math.random() * Math.PI * 2,
           drift: 0.002 + near * 0.006,
-          color: warm ? '244, 213, 139' : near > 0.8 ? '247, 243, 234' : '200, 214, 255',
+          color: warm ? '222, 180, 98' : '246, 236, 217',
         };
       });
     };

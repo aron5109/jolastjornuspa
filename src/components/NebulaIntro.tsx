@@ -46,12 +46,12 @@ function paintNebulaTexture(size: number): HTMLCanvasElement {
   const random = createRandom(2026);
   const c = size / 2;
   const palette = [
-    [91, 67, 199],
-    [128, 103, 255],
-    [72, 52, 168],
-    [114, 223, 255],
-    [60, 90, 200],
-    [158, 92, 220],
+    [150, 22, 34],
+    [190, 40, 48],
+    [120, 14, 24],
+    [222, 180, 98],
+    [170, 60, 40],
+    [100, 10, 20],
   ];
 
   ctx.globalCompositeOperation = 'lighter';
@@ -73,11 +73,11 @@ function paintNebulaTexture(size: number): HTMLCanvasElement {
     }
   }
 
-  // Broad violet haze so the arms read as one cloud.
+  // Broad red haze so the arms read as one cloud.
   const haze = ctx.createRadialGradient(c, c, 0, c, c, size * 0.5);
-  haze.addColorStop(0, 'rgba(110,80,220,0.22)');
-  haze.addColorStop(0.55, 'rgba(60,40,150,0.08)');
-  haze.addColorStop(1, 'rgba(20,20,60,0)');
+  haze.addColorStop(0, 'rgba(160,24,36,0.24)');
+  haze.addColorStop(0.55, 'rgba(90,10,18,0.08)');
+  haze.addColorStop(1, 'rgba(36,5,10,0)');
   ctx.fillStyle = haze;
   ctx.fillRect(0, 0, size, size);
 
@@ -85,8 +85,8 @@ function paintNebulaTexture(size: number): HTMLCanvasElement {
   const core = ctx.createRadialGradient(c, c, 0, c, c, size * 0.16);
   core.addColorStop(0, 'rgba(255,244,220,0.85)');
   core.addColorStop(0.25, 'rgba(244,213,139,0.35)');
-  core.addColorStop(0.6, 'rgba(150,120,255,0.12)');
-  core.addColorStop(1, 'rgba(150,120,255,0)');
+  core.addColorStop(0.6, 'rgba(190,40,48,0.12)');
+  core.addColorStop(1, 'rgba(190,40,48,0)');
   ctx.fillStyle = core;
   ctx.fillRect(0, 0, size, size);
 
@@ -99,8 +99,8 @@ function paintNebulaTexture(size: number): HTMLCanvasElement {
     const y = c + Math.sin(angle) * distance * 0.82;
     const radius = size * (0.04 + random() * 0.07);
     const dust = ctx.createRadialGradient(x, y, 0, x, y, radius);
-    dust.addColorStop(0, 'rgba(7,9,24,0.32)');
-    dust.addColorStop(1, 'rgba(7,9,24,0)');
+    dust.addColorStop(0, 'rgba(36,5,10,0.32)');
+    dust.addColorStop(1, 'rgba(36,5,10,0)');
     ctx.fillStyle = dust;
     ctx.fillRect(x - radius, y - radius, radius * 2, radius * 2);
   }
@@ -197,7 +197,7 @@ export function NebulaIntro({ reducedMotion, onDone }: Props) {
       ctx.globalCompositeOperation = 'source-over';
       ctx.globalAlpha = 1;
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = `rgba(7, 9, 24, ${1 - eased})`;
+      ctx.fillStyle = `rgba(36, 5, 10, ${1 - eased})`;
       ctx.fillRect(0, 0, width, height);
 
       // Nebula texture.
@@ -222,7 +222,7 @@ export function NebulaIntro({ reducedMotion, onDone }: Props) {
         if (x < -10 || y < -10 || x > width + 10 || y > height + 10) continue;
         const twinkle = reducedMotion ? 1 : 0.75 + 0.25 * Math.sin(elapsed * 0.002 + star.angle * 9);
         ctx.globalAlpha = star.alpha * twinkle * (1 - eased * 0.85);
-        ctx.fillStyle = star.warm ? '#f4d58b' : star.depth > 0.75 ? '#ffffff' : '#cfd8ff';
+        ctx.fillStyle = star.warm ? '#deb462' : star.depth > 0.75 ? '#fff6e8' : '#f0dcc8';
         const size = star.size * (1 + eased * star.depth * 1.5);
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
