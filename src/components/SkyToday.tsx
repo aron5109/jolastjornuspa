@@ -17,7 +17,7 @@ export function SkyToday({ date }: Props) {
   return (
     <section className="sky-today" aria-labelledby="sky-title">
       <div className="sky-heading">
-        <h2 id="sky-title">Himininn í dag</h2>
+        <h2 id="sky-title">Himinninn í dag</h2>
         <p className="sky-kicker">Raunveruleg stjörnufræði, óháð stjörnuspánni</p>
       </div>
 

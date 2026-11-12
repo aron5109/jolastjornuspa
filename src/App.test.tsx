@@ -91,7 +91,7 @@ describe('App', () => {
 
   it('shows the astronomy panel separately and never invents Moon numbers', () => {
     visit('?previewDate=2026-12-12&sign=naut');
-    const sky = screen.getByRole('region', { name: 'Himininn í dag' });
+    const sky = screen.getByRole('region', { name: 'Himinninn í dag' });
     expect(within(sky).getByText('Raunveruleg stjörnufræði, óháð stjörnuspánni')).toBeInTheDocument();
     const source = screen.getByRole('link', { name: /Moon Phase and Libration/ });
     expect(source.closest('.site-footer')).not.toBeNull();
