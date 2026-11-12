@@ -1,5 +1,5 @@
 import { formatDateIs } from '../utils/dates';
-import { formatAge, formatDistance, formatIllumination, getMoonDay, MOON_DATA, PHASE_LABELS } from '../utils/moon';
+import { formatAge, formatDistance, formatIllumination, getMoonDay, PHASE_LABELS } from '../utils/moon';
 import { MoonPhase } from './MoonPhase';
 
 type Props = {
@@ -17,7 +17,7 @@ export function SkyToday({ date }: Props) {
   return (
     <section className="sky-today" aria-labelledby="sky-title">
       <div className="sky-heading">
-        <h2 id="sky-title">Himininn í dag</h2>
+        <h2 id="sky-title">Himinninn í dag</h2>
         <p className="sky-kicker">Raunveruleg stjörnufræði, óháð stjörnuspánni</p>
       </div>
 
@@ -59,15 +59,6 @@ export function SkyToday({ date }: Props) {
           <p className="sky-time">{moon ? `Staða kl. 12:00 að íslenskum tíma, ${formatDateIs(date)}.` : null}</p>
         </div>
       </div>
-
-      <p className="sky-source">
-        Stjörnufræðileg gögn frá NASA:{' '}
-        <a href={MOON_DATA.source.landingPage} target="_blank" rel="noopener noreferrer">
-          Scientific Visualization Studio, Moon Phase and Libration 2026
-          <span className="visually-hidden"> (opnast í nýjum flipa)</span>
-        </a>
-        . Gögn: NASA.
-      </p>
     </section>
   );
 }

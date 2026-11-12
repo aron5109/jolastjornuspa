@@ -1537,12 +1537,6 @@ a:hover {
   display: none;
 }
 
-.sky-source {
-  padding-top: 12px;
-  border-top: 1px solid rgba(246, 236, 217, 0.14);
-  color: var(--faint);
-  font-size: 0.8rem;
-}
 
 @media (min-width: 600px) {
   .sky-today {

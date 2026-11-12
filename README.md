@@ -2,7 +2,7 @@
 
 **Hvað segja stjörnurnar um desember hjá þér?**
 
-Jólastjörnuspá is an interactive Icelandic Christmas horoscope microsite for staff. Every day from 1 to 31 December 2026 each of the twelve zodiac signs gets a new, humorous Christmas and workplace forecast in three parts (Vinnan, Jólin, Heppnin), plus a small "Stjörnuboð dagsins". A separate panel, "Himininn í dag", shows the real Moon for the selected day from NASA data.
+Jólastjörnuspá is an interactive Icelandic Christmas horoscope microsite for staff. Every day from 1 to 31 December 2026 each of the twelve zodiac signs gets a new, humorous Christmas and workplace forecast in three parts (Vinnan, Jólin, Heppnin), plus a small "Stjörnuboð dagsins". A separate panel, "Himinninn í dag", shows the real Moon for the selected day from NASA data.
 
 The horoscope is entertainment ("Til gamans gert"). The astronomy panel is real data and is kept separate from it in layout and wording.
 
@@ -134,7 +134,7 @@ To change copy: edit `scripts/horoscope-content.mjs`, run `npm run generate:horo
 
 `src/data/signs.ts` holds the traditional associations shown under "Hefðbundnar tengingar í stjörnuspeki" (Lykilorð, Pláneta, Höfuðskepna, Litir, Málmur, Steinar, Hefðbundnar líkamstengingar). The tradition is Western tropical astrology with the classical planetary rulers (Mars for Sporðdrekinn, Satúrnus for Vatnsberinn, Júpíter for Fiskarnir), and each metal follows its ruling planet. The UI labels them as traditional associations, not facts, and says explicitly that body associations are not health information.
 
-## Astronomy data: "Himininn í dag"
+## Astronomy data: "Himinninn í dag"
 
 Source: **NASA Scientific Visualization Studio, Moon Phase and Libration, 2026**
 Landing page: https://svs.gsfc.nasa.gov/5587/

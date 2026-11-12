@@ -15,6 +15,7 @@ import type { ZodiacId } from './types';
 import { dayOfMonth, formatDateIs, isDateUnlocked, latestUnlockedDate, resolveToday, sitePhase } from './utils/dates';
 import { getHoroscope } from './utils/horoscope';
 import { hasSeenIntro, markIntroSeen } from './utils/introStorage';
+import { MOON_DATA } from './utils/moon';
 import { buildSearch, readUrlState } from './utils/url';
 
 /** How long the selected constellation glows before the forecast replaces the selector. */
@@ -188,10 +189,15 @@ export default function App() {
           <p>
             <strong>Til gamans gert.</strong> Jólastjörnuspáin er skáldskapur og afþreying, ekki ráðgjöf.
           </p>
-          <p>
-            Himininn í dag byggir á stjörnufræðilegum gögnum frá NASA og tengist spánni ekki. Engar vafrakökur, engin
-            rakning.
+          <p className="footer-source">
+            Himinninn í dag byggir á stjörnufræðilegum gögnum frá NASA og tengist spánni ekki. (
+            <a href={MOON_DATA.source.landingPage} target="_blank" rel="noopener noreferrer">
+              Scientific Visualization Studio, Moon Phase and Libration
+              <span className="visually-hidden"> (opnast í nýjum flipa)</span>
+            </a>
+            )
           </p>
+          <p>Engar vafrakökur, engin rakning.</p>
         </footer>
       </div>
 
