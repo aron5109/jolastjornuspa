@@ -643,9 +643,8 @@ a:hover {
 }
 
 .is-orbital .zodiac-button-range {
-  font-size: 0.75rem;
-  line-height: 1.3;
-  text-wrap: balance;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 .is-orbital .zodiac-button-art {

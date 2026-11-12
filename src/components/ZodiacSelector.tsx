@@ -1,5 +1,5 @@
 import { useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
-import { SIGNS } from '../data/signs';
+import { SIGNS, shortDateRange } from '../data/signs';
 import type { ZodiacId } from '../types';
 import { ZodiacConstellation } from './ZodiacConstellation';
 import { ZodiacGlyph } from './ZodiacGlyph';
@@ -97,8 +97,8 @@ export function ZodiacSelector({ orbital, pendingSign, onSelect }: Props) {
                   <ZodiacGlyph sign={sign.id} className="zodiac-button-glyph" />
                   <span className="zodiac-button-name">{sign.name}</span>
                   <span className="zodiac-button-range">
-                    {/* Keep the dash with the first date so a wrapped range never starts with it. */}
-                    {sign.dateRange.replace(' – ', '\u00a0– ')}
+                    <span aria-hidden="true">{shortDateRange(sign.dateRange)}</span>
+                    <span className="visually-hidden">{sign.dateRange}</span>
                   </span>
                 </span>
               </button>
