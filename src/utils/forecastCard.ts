@@ -128,7 +128,7 @@ export async function renderForecastCard(sign: ZodiacSign, horoscope: DailyHoros
 
   ctx.fillStyle = 'rgba(246, 236, 217, 0.6)';
   ctx.font = `400 24px ${BODY_FONT}`;
-  ctx.fillText('Til gamans gert · aron5109.github.io/jolastjornuspa', PADDING, HEIGHT - PADDING + 20);
+  ctx.fillText('Til gamans gert · Menningar- og þjónustusvið', PADDING, HEIGHT - PADDING + 20);
 
   return new Promise((resolve) => canvas.toBlob((blob) => resolve(blob), 'image/png'));
 }
