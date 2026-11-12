@@ -1029,15 +1029,6 @@ a:hover {
   min-height: 0;
 }
 
-.forecast-disclaimer {
-  margin-top: 16px;
-  color: var(--faint);
-  font-size: 0.85rem;
-}
-
-.forecast-disclaimer strong {
-  color: var(--muted);
-}
 
 @media (min-width: 600px) {
   .forecast {
