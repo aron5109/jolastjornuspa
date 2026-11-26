@@ -51,6 +51,26 @@ describe('App', () => {
     expect(window.location.search).toContain('previewDate=2026-12-12');
   });
 
+  it('fits an embedding page: no header, the reading split into tabs', async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    visit('?embed&previewDate=2026-12-12&sign=steingeit');
+    const expected = getHoroscope('2026-12-12', 'steingeit')!;
+    expect(document.documentElement).toHaveClass('is-embedded');
+    expect(screen.getByRole('tab', { name: 'Spáin' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText(expected.work)).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Himinninn í dag' })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('tab', { name: 'Himinninn í dag' }));
+    expect(screen.getByRole('heading', { name: 'Himinninn í dag' })).toBeInTheDocument();
+    expect(screen.queryByText(expected.work)).not.toBeInTheDocument();
+
+    await user.keyboard('{ArrowLeft}');
+    expect(screen.getByRole('tab', { name: 'Um merkið' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: 'Um merkið' })).toHaveFocus();
+    expect(screen.getByText('Til gamans gert.')).toBeInTheDocument();
+    document.documentElement.classList.remove('is-embedded');
+  });
+
   it('locks future dates and lets visitors browse earlier ones', async () => {
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
     visit('?previewDate=2026-12-12&sign=ljon');

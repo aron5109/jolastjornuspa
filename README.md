@@ -49,6 +49,20 @@ npm test
 npm run check       # all of the above
 ```
 
+## Embedded in Jólahorn
+
+When Jólastjörnuspá runs inside another page, such as the Jólahorn window, it switches to an embedded layout that fits the frame exactly and never scrolls as a page. Add `?embed` to the address to see the same layout on its own page.
+
+- The site header is hidden; the host window provides the title.
+- The zodiac wheel sizes itself to the frame height.
+- The reading is split into three tabs: **Spáin**, **Um merkið** and **Himinninn í dag**. The date sits beside the tabs.
+- Vinnan, Jólin and Heppnin sit side by side on wide frames.
+- On short frames the type tightens so the forecast still fits.
+- Only the tab panel can scroll, and only on very small frames such as phones.
+- The NASA credit moves into the **Himinninn í dag** tab. "Til gamans gert" stays in the footer.
+
+Detection: `src/utils/embed.ts`. Styles: the "embedded" section at the end of `src/styles/global.css`.
+
 ## Testing switch: `OPEN_ALL_DAYS`
 
 `src/config.ts` has one switch, `OPEN_ALL_DAYS`. **It is currently `true`**, so the site opens with all 31 days unlocked (the archive view), whatever the date. `?previewDate=` still overrides it, so the teaser and the day locks can be checked.

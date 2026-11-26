@@ -1595,3 +1595,381 @@ a:hover {
     border: 1px solid CanvasText;
   }
 }
+
+/* ----------------------------------------------------------------------------- embedded
+ * Inside another page (the Jólahorn window, or ?embed) the site fits its frame exactly and
+ * never scrolls as a page. The header is left to the host's title, the zodiac wheel sizes to
+ * the frame height, and the reading is split into tabs. Only a tab panel may scroll, and only
+ * when the frame is very small.
+ * ------------------------------------------------------------------------------------------ */
+
+html.is-embedded,
+html.is-embedded body {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app.is-embedded {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+}
+
+.is-embedded .page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: none;
+  padding: 14px 20px 10px;
+}
+
+.is-embedded .main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.is-embedded .site-footer p:not(:first-child) {
+  display: none; /* the NASA credit moves into the "Himinninn í dag" tab */
+}
+
+.is-embedded .site-footer {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 14px;
+  row-gap: 0;
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+/* choose: the wheel fills the frame height */
+.is-embedded .choose {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+  padding-top: 0;
+}
+
+.is-embedded .choose .eyebrow {
+  font-size: 1rem;
+}
+
+.is-embedded .choose-title {
+  margin-top: 0;
+  font-size: clamp(1.6rem, 4.6vh, 2.5rem);
+}
+
+.is-embedded .choose-text {
+  margin-top: 0;
+  font-size: 0.9rem;
+}
+
+.is-embedded .zodiac-selector.is-orbital {
+  --orbit-size: clamp(320px, calc(100vh - 160px), 760px);
+  margin-top: 0;
+}
+
+.is-embedded .is-orbital .zodiac-item {
+  width: calc(var(--orbit-size) * 0.18);
+}
+
+.is-embedded .is-orbital .zodiac-button {
+  padding: 6px 2px 8px;
+}
+
+.is-embedded .is-orbital .zodiac-button-name {
+  font-size: clamp(0.85rem, calc(var(--orbit-size) * 0.024), 1.2rem);
+}
+
+.is-embedded .is-orbital .zodiac-button-range {
+  font-size: clamp(0.6rem, calc(var(--orbit-size) * 0.016), 0.8rem);
+}
+
+.is-embedded .is-orbital .zodiac-button-art {
+  width: 24px;
+  height: 24px;
+}
+
+.is-embedded .orbit-preview-name {
+  font-size: clamp(1.1rem, calc(var(--orbit-size) * 0.032), 1.6rem);
+}
+
+.is-embedded .orbit-preview-hint {
+  margin-top: 4px;
+  font-size: clamp(1rem, calc(var(--orbit-size) * 0.026), 1.35rem);
+}
+
+.is-embedded .orbit-star {
+  width: calc(var(--orbit-size) * 0.09);
+  height: calc(var(--orbit-size) * 0.09);
+}
+
+.is-embedded .zodiac-selector.is-grid {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+/* reading: day path, tabs, one panel */
+.reading.is-tabbed {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.is-tabbed .december-nav {
+  padding: 4px 10px;
+}
+
+.is-tabbed .celestial-path {
+  height: 74px;
+}
+
+.reading-tabs-row {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  column-gap: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.reading-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.reading-date {
+  padding-bottom: 10px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+.reading-tab {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.reading-tab:hover {
+  color: var(--cream);
+}
+
+.reading-tab[aria-selected='true'] {
+  border-bottom-color: var(--gold);
+  color: var(--gold);
+}
+
+.reading-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.reading-panel > * {
+  min-height: 100%;
+}
+
+.is-tabbed .forecast {
+  padding: 18px 22px 20px;
+}
+
+.is-tabbed .forecast-header > .eyebrow {
+  display: none; /* the date sits beside the tabs */
+}
+
+.is-tabbed .forecast-title-row {
+  margin-top: 0;
+}
+
+.is-tabbed .forecast-title {
+  font-size: clamp(1.9rem, 5vh, 2.6rem);
+}
+
+.is-tabbed .forecast-headline {
+  margin-top: 10px;
+  font-size: 1.35rem;
+}
+
+.is-tabbed .forecast-sections {
+  margin-top: 14px;
+}
+
+.is-tabbed .forecast-section {
+  padding: 10px 0 12px;
+}
+
+.is-tabbed .forecast-section-text {
+  margin-top: 4px;
+  font-size: 1.12rem;
+  line-height: 1.4;
+}
+
+.is-tabbed .star-message {
+  margin-top: 14px;
+  padding: 12px 16px;
+}
+
+.is-tabbed .star-message-text {
+  font-size: 1.12rem;
+}
+
+.is-tabbed .forecast-actions {
+  margin-top: 14px;
+}
+
+@media (min-width: 760px) {
+  /* Vinnan, Jólin and Heppnin side by side */
+  .is-tabbed .forecast-sections {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .is-tabbed .forecast-section {
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  /* Stjörnuboð dagsins and the actions share one row */
+  .is-tabbed .forecast {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 20px;
+    align-items: center;
+  }
+
+  .is-tabbed .forecast > .forecast-header,
+  .is-tabbed .forecast > .forecast-sections {
+    grid-column: 1 / -1;
+  }
+
+  .is-tabbed .forecast-actions {
+    flex-wrap: nowrap;
+  }
+}
+
+.is-tabbed .forecast {
+  align-content: start;
+}
+
+.is-tabbed .action-button {
+  white-space: nowrap;
+}
+
+.sky-panel {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.sky-source {
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+@media (max-height: 760px) {
+  /* short frames (laptops): tighter type so the forecast still fits without scrolling */
+  .is-embedded .page {
+    padding: 10px 16px 8px;
+  }
+
+  .is-tabbed .celestial-path {
+    height: 62px;
+  }
+
+  .reading.is-tabbed {
+    gap: 8px;
+  }
+
+  .reading-tab {
+    min-height: 40px;
+    padding: 6px 14px;
+    font-size: 1.05rem;
+  }
+
+  .reading-date {
+    padding-bottom: 8px;
+  }
+
+  .is-tabbed .forecast {
+    padding: 12px 18px 14px;
+  }
+
+  .is-tabbed .forecast-glyph {
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+  }
+
+  .is-tabbed .forecast-title {
+    font-size: 1.8rem;
+  }
+
+  .is-tabbed .forecast-headline {
+    margin-top: 6px;
+    font-size: 1.15rem;
+  }
+
+  .is-tabbed .forecast-sections {
+    margin-top: 10px;
+  }
+
+  .is-tabbed .forecast-section {
+    padding: 8px 0 10px;
+  }
+
+  .is-tabbed .forecast-section-title {
+    font-size: 1.15rem;
+  }
+
+  .is-tabbed .forecast-section-text {
+    font-size: 1rem;
+  }
+
+  .is-tabbed .star-message {
+    margin-top: 10px;
+    padding: 10px 14px;
+  }
+
+  .is-tabbed .star-message-text {
+    font-size: 1rem;
+  }
+
+  .is-tabbed .forecast-actions {
+    margin-top: 10px;
+  }
+
+  .is-tabbed .action-button {
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+}
