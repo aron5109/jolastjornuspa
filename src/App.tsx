@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { DecemberNavigator } from './components/DecemberNavigator';
 import { HoroscopeView } from './components/HoroscopeView';
 import { NebulaIntro } from './components/NebulaIntro';
@@ -14,6 +14,7 @@ import { useReducedMotion } from './hooks/useReducedMotion';
 import type { ZodiacId } from './types';
 import { dayOfMonth, formatDateIs, isDateUnlocked, latestUnlockedDate, resolveToday, sitePhase } from './utils/dates';
 import { getHoroscope } from './utils/horoscope';
+import { detectEmbedded } from './utils/embed';
 import { hasSeenIntro, markIntroSeen } from './utils/introStorage';
 import { MOON_DATA } from './utils/moon';
 import { buildSearch, readUrlState } from './utils/url';
@@ -22,6 +23,14 @@ import { buildSearch, readUrlState } from './utils/url';
 const SELECT_ANIMATION_MS = 700;
 
 type View = { sign: ZodiacId | null; date: string | null };
+
+/** Embedded reading tabs: the forecast, the sign's traditional associations, and the real sky. */
+type Panel = 'forecast' | 'sign' | 'sky';
+const PANELS: [Panel, string][] = [
+  ['forecast', 'Spáin'],
+  ['sign', 'Um merkið'],
+  ['sky', 'Himinninn í dag'],
+];
 
 function readView(search: string, defaultDate: string | null): View {
   const state = readUrlState(search);
@@ -33,6 +42,13 @@ function readView(search: string, defaultDate: string | null): View {
 export default function App() {
   const reducedMotion = useReducedMotion();
   const isDesktop = useMediaQuery(DESKTOP_QUERY);
+  const [embedded] = useState(() => detectEmbedded());
+  const [panel, setPanel] = useState<Panel>('forecast');
+  const tabRefs = useRef<Record<Panel, HTMLButtonElement | null>>({ forecast: null, sign: null, sky: null });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('is-embedded', embedded);
+  }, [embedded]);
 
   // The effective day is fixed for the page view; previewDate is read only inside utils/dates.
   const [today] = useState(() => resolveToday(window.location.search));
@@ -72,6 +88,7 @@ export default function App() {
     pendingTimer.current = window.setTimeout(
       () => {
         setPendingSign(null);
+        setPanel('forecast');
         focusForecast.current = true;
         commit({ sign, date: view.date ?? defaultDate }, 'push');
       },
@@ -87,6 +104,20 @@ export default function App() {
   const selectDate = (date: string) => {
     if (!isDateUnlocked(date, today)) return;
     commit({ ...view, date }, 'replace');
+  };
+
+  const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    const index = PANELS.findIndex(([id]) => id === panel);
+    let next: number | null = null;
+    if (event.key === 'ArrowRight') next = (index + 1) % PANELS.length;
+    else if (event.key === 'ArrowLeft') next = (index - 1 + PANELS.length) % PANELS.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = PANELS.length - 1;
+    if (next === null) return;
+    event.preventDefault();
+    const id = PANELS[next][0];
+    setPanel(id);
+    tabRefs.current[id]?.focus();
   };
 
   const finishIntro = useCallback(() => {
@@ -125,7 +156,7 @@ export default function App() {
   }, [phase, today]);
 
   return (
-    <div className={`app phase-${phase}${variant !== 'default' ? ` day-${variant}` : ''}`}>
+    <div className={`app phase-${phase}${variant !== 'default' ? ` day-${variant}` : ''}${embedded ? ' is-embedded' : ''}`}>
       <div className="backdrop" aria-hidden="true">
         <div className="backdrop-nebula" />
         <StarField reducedMotion={reducedMotion} variant={variant} paused={showIntro} />
@@ -135,7 +166,7 @@ export default function App() {
         <a className="skip-link" href="#main">
           Fara beint í efnið
         </a>
-        <header className="site-header">
+        <header className={`site-header${embedded ? ' visually-hidden' : ''}`}>
           <StarMark className="site-mark" />
           <div>
             <h1 className="site-title" ref={headingRef} tabIndex={-1}>
@@ -148,6 +179,65 @@ export default function App() {
         <main id="main" className="main">
           {phase === 'before' ? (
             <Teaser today={today} />
+          ) : sign && horoscope && selectedDate && embedded ? (
+            <div className="reading is-tabbed">
+              <div className="reading-nav">
+                <DecemberNavigator
+                  today={today}
+                  selectedDate={selectedDate}
+                  onSelect={selectDate}
+                  layout={isDesktop ? 'path' : 'compact'}
+                />
+              </div>
+              <div className="reading-tabs-row">
+              <div className="reading-tabs" role="tablist" aria-label={`Spá fyrir ${sign.name}`}>
+                {PANELS.map(([id, label]) => (
+                  <button
+                    key={id}
+                    ref={(element) => {
+                      tabRefs.current[id] = element;
+                    }}
+                    type="button"
+                    role="tab"
+                    id={`tab-${id}`}
+                    className="reading-tab"
+                    aria-selected={panel === id}
+                    aria-controls="reading-panel"
+                    tabIndex={panel === id ? 0 : -1}
+                    onClick={() => setPanel(id)}
+                    onKeyDown={onTabKeyDown}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <p className="reading-date">{formatDateIs(selectedDate)}</p>
+              </div>
+              <div className="reading-panel" id="reading-panel" role="tabpanel" aria-labelledby={`tab-${panel}`}>
+                {panel === 'forecast' ? (
+                  <HoroscopeView
+                    sign={sign}
+                    horoscope={horoscope}
+                    reducedMotion={reducedMotion}
+                    onChooseAnother={chooseAnother}
+                  />
+                ) : panel === 'sign' ? (
+                  <ZodiacInfo key={sign.id} sign={sign} collapsible={false} />
+                ) : (
+                  <div className="sky-panel">
+                    <SkyToday date={selectedDate} />
+                    <p className="sky-source">
+                      Byggt á gögnum frá NASA (
+                      <a href={MOON_DATA.source.landingPage} target="_blank" rel="noopener noreferrer">
+                        Scientific Visualization Studio, Moon Phase and Libration
+                        <span className="visually-hidden"> (opnast í nýjum flipa)</span>
+                      </a>
+                      ). Tengist spánni ekki.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
           ) : sign && horoscope && selectedDate ? (
             <div className="reading">
               <div className="reading-nav">
